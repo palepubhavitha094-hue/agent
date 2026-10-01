@@ -1,33 +1,26 @@
-state = {
-    "done": False,
-    "stage": 0,
-    "status": None
-}
+def agent_loop(max_iters=10):
+    state = {
+        "done": False,
+        "stage": "start"
+    }
 
-max_iters = 10
+    for i in range(max_iters):
+        # Observe
+        state["stage"] = "observe"
 
-for i in range(max_iters):
-    state["stage"] += 1
+        # Decide
+        state["stage"] = "decide"
 
-    print(f"Iteration {state['stage']}")
+        # Act
+        state["stage"] = "act"
 
-    # Observe
-    print("Observe")
+        # Success → terminate
+        if success_condition():
+            state["done"] = True
+            state["stage"] = "success"
+            return "success", state
 
-    # Decide
-    print("Decide")
-
-    # Act
-    print("Act")
-
-    # Example success condition
-    if state["stage"] == 3:
-        state["done"] = True
-        state["status"] = "success"
-        return state
-
-# If max iterations are exceeded
-state["done"] = True
-state["status"] = "failure"
-
-return state
+    # Max iterations → terminate with failure
+    state["done"] = True
+    state["stage"] = "failure"
+    return "failure", state
