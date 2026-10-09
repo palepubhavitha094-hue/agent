@@ -1,4 +1,4 @@
-{
+            {
   "name": "Community FAQ Generator - Manual Input + Groq + Simple Memory (Fixed)",
   "nodes": [
     {
@@ -49,11 +49,7 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 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"
-            },
-            {
+                        {
               "name": "Content-Type",
               "value": "application/json"
             }
